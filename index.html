@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SpawnHop Ad Debugger</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3940256099942544" crossorigin="anonymous"></script>
+</head>
+<body style="background: #0f172a; color: white; text-align: center; padding: 50px; font-family: sans-serif;">
+
+    <h1>SpawnHop Ad Connectivity Test</h1>
+    <p style="color: #94a3b8;">Testing domain: <span id="current-host"></span></p>
+
+    <div style="margin: 20px auto; width: 728px; height: 90px; background: #1e293b; border: 2px dashed #334155; display: flex; align-items: center; justify-content: center;">
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px"
+             data-ad-client="ca-pub-3940256099942544"
+             data-ad-slot="6300975411"></ins>
+        <script>
+            // 3. Push the ad request
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <div id="status" style="margin-top: 20px; font-weight: bold; color: #fbbf24;">
+        Waiting for Google AdSense...
+    </div>
+
+    <script>
+        document.getElementById('current-host').innerText = window.location.hostname;
+        
+        // Simple check to see if the script actually loaded
+        setTimeout(() => {
+            const status = document.getElementById('status');
+            if (window.adsbygoogle && window.adsbygoogle.loaded) {
+                status.innerText = "✅ Google Script Loaded Successfully!";
+                status.style.color = "#4ade80";
+            } else {
+                status.innerText = "❌ Script Blocked. Check Console (F12) for MIME/CORS errors.";
+                status.style.color = "#f87171";
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
