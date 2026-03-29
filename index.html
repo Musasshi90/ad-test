@@ -1,43 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>SpawnHop Ad Debugger</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpawnHop Ad Debugger - Responsive</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3940256099942544" crossorigin="anonymous"></script>
 </head>
-<body style="background: #0f172a; color: white; text-align: center; padding: 50px; font-family: sans-serif;">
+<body style="background: #0f172a; color: white; text-align: center; padding: 20px; font-family: system-ui, -apple-system, sans-serif;">
 
-    <h1>SpawnHop Ad Connectivity Test</h1>
-    <p style="color: #94a3b8;">Testing domain: <span id="current-host"></span></p>
+    <h1 style="font-size: 1.5rem; margin-bottom: 10px;">SpawnHop Ad Test</h1>
+    <p style="color: #94a3b8; font-size: 0.9rem;">Host: <span id="current-host"></span></p>
 
-    <div style="margin: 20px auto; max-width: 728px; min-height: 90px; background: #1e293b; border: 2px dashed #334155; display: flex; align-items: center; justify-content: center;">
+    <div style="margin: 20px auto; width: 100%; max-width: 728px; min-height: 250px; background: #1e293b; border: 2px dashed #334155; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 12px;">
+        
         <ins class="adsbygoogle"
-             style="display:inline-block;width:728px;height:90px"
+             style="display:block; width:100%;"
              data-ad-client="ca-pub-3940256099942544"
-             data-ad-slot="6300975411"></ins>
+             data-ad-slot="6300975411"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        
         <script>
-            // 3. Push the ad request
+            // 3. Trigger the Ad
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
     </div>
 
-    <div id="status" style="margin-top: 20px; font-weight: bold; color: #fbbf24;">
-        Waiting for Google AdSense...
+    <div style="margin-top: 30px; padding: 15px; background: #000; border-radius: 8px; text-align: left; font-family: monospace; font-size: 12px; border: 1px solid #333;">
+        <div style="color: #4ade80; margin-bottom: 5px;">[SYSTEM LOG]</div>
+        <div id="log-status">Checking connection...</div>
+        <div id="log-width" style="margin-top: 5px; color: #60a5fa;"></div>
     </div>
 
     <script>
+        // Update basic info
         document.getElementById('current-host').innerText = window.location.hostname;
-        
-        // Simple check to see if the script actually loaded
+        document.getElementById('log-width').innerText = "Screen Width: " + window.innerWidth + "px";
+
+        // Check if script loaded correctly
         setTimeout(() => {
-            const status = document.getElementById('status');
+            const logStatus = document.getElementById('log-status');
+            
             if (window.adsbygoogle && window.adsbygoogle.loaded) {
-                status.innerText = "✅ Google Script Loaded Successfully!";
-                status.style.color = "#4ade80";
+                logStatus.innerHTML = "✅ SUCCESS: AdSense Script Active.<br>If you don't see the 'Nice Job' image, try rotating your phone to Landscape.";
+                logStatus.style.color = "#4ade80";
+            } else if (window.adsbygoogle) {
+                logStatus.innerHTML = "⚠️ SCRIPT LOADED: But not 'initialized' yet. Try refreshing.";
+                logStatus.style.color = "#fbbf24";
             } else {
-                status.innerText = "❌ Script Blocked. Check Console (F12) for MIME/CORS errors.";
-                status.style.color = "#f87171";
+                logStatus.innerHTML = "❌ BLOCKED: Script failed to load. (Check ISP/VPN/AdBlock)";
+                logStatus.style.color = "#f87171";
             }
-        }, 3000);
+        }, 4000);
     </script>
+
 </body>
 </html>
