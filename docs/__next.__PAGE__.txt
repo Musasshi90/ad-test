@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[73430,["/_next/static/chunks/03a4jm_7-dpof.js","/_next/static/chunks/0dbhjjzl8qfwv.js","/_next/static/chunks/12dqocjzp3x1v.js"],"default"]
+2:I[69343,["/_next/static/chunks/03a4jm_7-dpof.js","/_next/static/chunks/0dbhjjzl8qfwv.js","/_next/static/chunks/0v5ury1nm7h3i.js"],"default"]
 3:I[97367,["/_next/static/chunks/03a4jm_7-dpof.js","/_next/static/chunks/0dbhjjzl8qfwv.js"],"OutletBoundary"]
 4:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"className":"flex min-h-screen flex-col items-center p-24 bg-slate-900 text-white","children":[["$","h1",null,{"className":"text-4xl font-bold mb-8","children":"SpawnHop Ads Test"}],["$","div",null,{"className":"p-4 bg-slate-800 rounded-lg border border-slate-700 w-full max-w-2xl","children":[["$","p",null,{"className":"mb-4","children":"The Google Test Ad should appear below:"}],["$","$L2",null,{}]]}]]}],[["$","script","script-0",{"src":"/_next/static/chunks/12dqocjzp3x1v.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Hr-6wL0yrA3qmasj7UddD"}
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{}],[["$","script","script-0",{"src":"/_next/static/chunks/0v5ury1nm7h3i.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"-vsACp16hg34nHLI6lOmm"}
 5:null
