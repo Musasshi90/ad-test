@@ -24,13 +24,11 @@ export default function RootLayout({ children }) {
     >
       <head>
         {/* Load Google AdSense using the Test Publisher ID */}
-        <Script
-          id="adsense-id"
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3940256099942544"
-          strategy="beforeInteractive"
           crossOrigin="anonymous"
-        />
+        ></script>
       </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

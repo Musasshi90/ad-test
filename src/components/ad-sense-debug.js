@@ -1,47 +1,49 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import Script from 'next/script';
 
 export default function AdSenseDebug() {
-  const [status, setStatus] = useState("Waiting for Script...");
+  const [status, setStatus] = useState("Scanning for AdSense...");
+  const [userAgent, setUserAgent] = useState("loading..."); // Default state
+  const [isMounted, setIsMounted] = useState(false); // Track if we are on client
 
-  // This function runs the moment Google's script is actually READY
-  const handleOnReady = () => {
-    console.log("AdSense Script is ready!");
-    try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-      setStatus("✅ SUCCESS: AdSense Initialized.");
-    } catch (e) {
-      setStatus("❌ PUSH ERROR: Check Console.");
-    }
-  };
+  useEffect(() => {
+    setIsMounted(true); // Now we know we are on the client side
+    setUserAgent(navigator.userAgent.slice(0, 50)); // Set real UA here
+
+    const interval = setInterval(() => {
+      if (window.adsbygoogle) {
+        clearInterval(interval);
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+          setStatus("✅ SUCCESS: Script detected!");
+        } catch (e) {
+          setStatus("❌ PUSH ERROR");
+        }
+      }
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div className="bg-slate-900 p-5 text-center text-white min-h-screen">
-      <h1 className="text-xl font-bold">SpawnHop Mobile Ad Test</h1>
+    <div className="p-4 bg-slate-900 text-white min-h-screen">
+      <h1 className="text-xl font-bold mb-4 text-center">SpawnHop Mobile Debug</h1>
 
-      {/* Re-declaring the script here with onReady for local debugging */}
-      <Script
-        id="adsense-init"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3940256099942544"
-        onReady={handleOnReady} // 👈 This waits for the script to finish loading
-      />
-
-      <div className="my-5 w-full max-w-[728px] min-h-[250px] bg-slate-800 border-2 border-dashed border-slate-600 flex items-center justify-center mx-auto rounded-xl">
+      <div className="bg-slate-800 border-2 border-dashed border-slate-700 h-[250px] flex items-center justify-center rounded-lg overflow-hidden">
         <ins className="adsbygoogle"
-             style={{ display: 'block', width: '100%' }}
+             style={{ display: 'block', width: '300px', height: '250px' }}
              data-ad-client="ca-pub-3940256099942544"
-             data-ad-slot="6300975411"
-             data-ad-format="auto"
-             data-full-width-responsive="true" />
+             data-ad-slot="6300975411" />
       </div>
 
-      <div className="mt-8 p-4 bg-black rounded-lg text-left font-mono text-xs border border-slate-700">
-        <div className="text-green-400 mb-1">[SYSTEM LOG]</div>
-        <div className={status.includes('✅') ? 'text-green-400' : 'text-yellow-400'}>
-          {status}
-        </div>
+      <div className="mt-6 p-3 bg-black border border-slate-700 rounded font-mono text-xs">
+        <p className="text-green-500">[LOG]: {status}</p>
+        
+        {/* Only show the UserAgent after mounting to prevent mismatch */}
+        <p className="text-blue-400 mt-2">
+           Browser: {isMounted ? userAgent : "loading..."}
+        </p>
       </div>
     </div>
   );
